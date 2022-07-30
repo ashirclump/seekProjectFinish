@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 
  import React, { useState } from 'react';
  import {
@@ -129,7 +122,6 @@
            <Right name='right' color={'#757575'} style={{ marginTop: 3 }} />
  
          </View>
- 
          <FlatList
            style={{ height: 280,bottom:15}}
            data={Freelancers}
