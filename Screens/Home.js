@@ -37,6 +37,7 @@ import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 // onPress={()=> handleCardItem (item._id)}
 
 export default function Home({navigation}) {
+  const [catagoryState, setcatagoryState] = useState(catagoryElements);
 
   useEffect(()=>{
     axios.get("http://3.109.48.115:5500/user/getCategories")
@@ -50,9 +51,8 @@ export default function Home({navigation}) {
        })
   },[])
 
-  const [catagoryState, setcatagoryState] = useState(catagoryElements);
+  
     // const [catagories, setcatagories] = useState(allcatagory);
-
     // const getcatagoryData = async () => {
     //   try {
     //     let response = await fetch(
@@ -63,20 +63,6 @@ export default function Home({navigation}) {
     //     setcategories(json.result);
     //   } catch (error) {
     //     console.error(error);
-    //   }
-    // };
-
-  //   const getcatagorydata = async () =>{
-  //       let url = 'http://3.109.48.115:5500/user/getCategories';
-  //       axios.get(url)
-  //           .then((response) => {
-  //               setcatagories((response.result));
-  //               console.log(response.result)
-  //           })
-  //           .catch(function (error){ 
-  //             console.log(error)
-  //           alert(error.result);
-  //           })
   //   }
 
   //  useEffect(()=>{catagoryElements()},[])
@@ -123,7 +109,7 @@ export default function Home({navigation}) {
 
     return (
         <>
-    {/* <ScrollView> */}
+    <ScrollView>
           <View style={{marginHorizontal: 20, bottom: 22}}>
             <View
               style={{
@@ -286,7 +272,7 @@ export default function Home({navigation}) {
               </View>
             </LinearGradient>
   
-
+          
   
             <View style={{marginTop: 30}}>
               <Text style={{fontSize:20,color:'black',fontWeight:'700'}}>Categories</Text>
@@ -296,8 +282,7 @@ export default function Home({navigation}) {
             data={catagoryState}
             //  horizontal={true}
             numColumns={3}
-            renderItem = {item =>{
-            // renderItem={({item }) => {
+            renderItem={({item}) => {
               return (
                 <View style={{ alignContent: 'center', alignItems: 'center',top:30, width : 120, height : 180,}}>
                   <View style={{ borderRadius: 20, backgroundColor: '#FFFFFF', width : 110, height : 150,bottom:20,right:8}}>
@@ -305,12 +290,12 @@ export default function Home({navigation}) {
                     <Image
                      onPress={()=>navigation.navigate("Map")}
                      style={{ borderRadius: 20, width : 85, height : 85,top:5,alignSelf:'center',margin:8}}
-                    // source ={item.image}
-                    source = {{uri:item.catagoryState.image}}
+                    source ={item.image}
+                    // source = {{uri:item.image}}
                    />
                     </TouchableOpacity>
                     
-                      <Text style={{ fontSize: 16, textAlign: 'center', color: '#161616', fontWeight: '500' }}>{item.catagoryName.catagoryName}</Text>
+                      <Text style={{ fontSize: 16, textAlign: 'center', color: '#161616', fontWeight: '500' }}>{item.catagoryName}</Text>
                     
                     {/* <Text style={{ fontSize: 16, textAlign: 'center', color: '#161616', fontWeight: '500' }}>{item.onemore}</Text> */}
                   </View>
@@ -319,6 +304,7 @@ export default function Home({navigation}) {
                 
           />
         </View>
+
             <View style={{top: 15}}>
               <NextHM />
             </View>
@@ -330,7 +316,7 @@ export default function Home({navigation}) {
           
           </View>
         
-          {/* </ScrollView> */}
+          </ScrollView>
       </>
     )
   };

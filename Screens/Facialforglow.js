@@ -33,8 +33,8 @@ import Location from 'react-native-vector-icons/Ionicons';
 import Noti from 'react-native-vector-icons/Ionicons';
 import Plus from 'react-native-vector-icons/Entypo';
 import LinearGradient from 'react-native-linear-gradient';
-import Head from '../Screens/Components/Header'
-import Facialglow from '../Screens/Components/Facialglow'
+import Head from '../Screens/Components/Header';
+// import Facialforglow from '../Screens/Components/Facialforglow';
 import Diamond from './Diamond'
 
 

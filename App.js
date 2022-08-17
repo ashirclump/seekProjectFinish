@@ -28,6 +28,7 @@ import SelectTimeOne from './Sumrryslot/SelectTimeOne';
 // import ChangeLocation from './Screens/ChangeLocation';
 // import NextHM from './Screens/NextHM';
 import Head from './Screens/Components/Head';
+// import Facialforglow from './Screens/Facialforglow';
 
 
 
@@ -71,8 +72,6 @@ function App() {
       <Stack.Screen options={{ headerShown: false }} name="AddMoney" component={AddMoney} />
 
       <Stack.Screen options={{ headerShown: false }} name="SummaryFinal" component={SummaryFinal} />
-
-
       <Stack.Screen options={{ headerShown: false }} name="Otp" component={Otp} />
       <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
       {/* <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} /> */}
@@ -84,6 +83,7 @@ function App() {
       <Stack.Screen options={{ headerShown: false }} name="SelectedServices" component={SelectedServices} />
       <Stack.Screen options={{ headerShown: false }} name="Map" component={Map} />
       <Stack.Screen options={{ headerShown: false }} name="SelectTimeOne" component={SelectTimeOne} />
+      {/* <Stack.Screen options={{ headerShown: false }} name="Facialforglow" component={Facialforglow} /> */}
       {/* <Stack.Screen options={{ headerShown: false }} name="ChangeLocation" component={ChangeLocation} /> */}
       {/* <Stack.Screen options={{ headerShown: false }} name="Head" component={Head} /> */}
 
