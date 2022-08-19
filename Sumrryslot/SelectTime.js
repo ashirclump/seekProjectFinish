@@ -13,7 +13,7 @@ import {
 import Modal from 'react-native-modal';
 import Plus from 'react-native-vector-icons/AntDesign';
 import News from 'react-native-vector-icons/FontAwesome';
-import SummaryFinal from './SummaryFinal';
+// import SummaryFinal from './SummaryFinal';
 
 
 

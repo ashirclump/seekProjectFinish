@@ -86,14 +86,7 @@ function App() {
       {/* <Stack.Screen options={{ headerShown: false }} name="Facialforglow" component={Facialforglow} /> */}
       {/* <Stack.Screen options={{ headerShown: false }} name="ChangeLocation" component={ChangeLocation} /> */}
       {/* <Stack.Screen options={{ headerShown: false }} name="Head" component={Head} /> */}
-
-
-
-
-
-
-
-           </Stack.Navigator>
+    </Stack.Navigator>
     </NavigationContainer>
   );
 }

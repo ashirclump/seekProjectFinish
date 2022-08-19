@@ -40,7 +40,7 @@ export default function Home({navigation}) {
   const [catagoryState, setcatagoryState] = useState(catagoryElements);
 
   useEffect(()=>{
-    axios.get("http://3.109.48.115:5500/user/getCategories")
+    axios.get("http://15.206.166.219:5500/user/getCategories")
     .then(response=>{
       setcatagoryState(response.result)
       console.log(response.result)
