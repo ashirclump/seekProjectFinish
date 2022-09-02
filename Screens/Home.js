@@ -36,20 +36,68 @@ import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 // import { get } from 'react-native/Libraries/Utilities/PixelRatio';
 // onPress={()=> handleCardItem (item._id)}
 
-export default function Home({navigation}) {
-  const [catagoryState, setcatagoryState] = useState(catagoryElements);
 
-  useEffect(()=>{
-    axios.get("http://15.206.166.219:5500/user/getCategories")
-    .then(response=>{
-      setcatagoryState(response.result)
-      console.log(response.result)
+
+
+const Home = ({ navigation }) => {
+
+  const [categories, setcategories] = useState([]);
+  // console.log('categories11', categories);
+  console.log('1111', categories)
+
+  useEffect(() => {
+    // useEffect(()=>{nts
+      const requestOptions = {
+          method: 'GET',
+          redirect: 'follow'
+      };
+
+      fetch(
+        "http://13.126.187.109:5500/user/getCategories"
+        // "https://api.thecatapi.com/v1/images/search?limit=10&page=1"
+        // "https://api.sampleapis.com/coffee/hot"
+      , requestOptions).then((result) => {
+        // console.log('Home', result)
+          result.json().then((resp) => {
+              setcategories(resp)
+          })
       })
-      .catch(function (error){ 
-       console.log(error,)
-       alert(error.result);
-       })
-  },[])
+ }, []);
+
+  // const [salonforwomen, setsalonforwomen] = useState([]);
+  // console.log('1111', salonforwomen)
+
+  // useEffect(() => {
+
+  //   const requestOptions = {
+  //     method: 'GET',
+  //     redirect: 'follow'
+  //   };
+
+  //   fetch(
+  //     "http://15.206.166.219:5500/admin//salonFormenList"
+  //     // "http://15.206.166.219:5500/user/getCategories"
+  //     , requestOptions).then((result) => {
+  //       result.json().then((resp) => {
+  //         setsalonforwomen(resp)
+  //       })
+  //     })
+  // }, []);
+
+// export default function Home({navigation}) {
+//   const [catagoryState, setcatagoryState] = useState(catagoryElements);
+
+//   useEffect(()=>{
+//     axios.get("http://15.206.166.219:5500/user/getCategories")
+//     .then(response=>{
+//       setcatagoryState(response.result)
+//       console.log(response.result)
+//       })
+//       .catch(function (error){ 
+//        console.log(error,)
+//        alert(error.result);
+//        })
+//   },[])
 
   
     // const [catagories, setcatagories] = useState(allcatagory);
@@ -66,46 +114,6 @@ export default function Home({navigation}) {
   //   }
 
   //  useEffect(()=>{catagoryElements()},[])
-
-   const catagoryElements = [
-    {
-      _id: 1,
-      catagoryName: 'salonForWomen',
-      // onemore: 'Women',
-      image: require('../assets/swoman.png')
-      
-    },
-    {
-      _id: 2,
-      catagoryName: 'tailor',
-      image: require('../assets/tailor.png')
-    },
-    {
-      _id: 3,
-      catagoryName: 'Massage for Men',
-      // onemore: '',
-      image: require('../assets/mman.png')
-    },
-    {
-      _id: 4,
-      catagoryName: 'salonForMen',
-      // onemore: 'Men',
-      image: require('../assets/hsalon.png')
-    },
-    {
-      _id: 5,
-      catagoryName: 'Home Repairs',
-      // onemore: '',
-      image: require('../assets/hrepair.png')
-    },
-    {
-      _id: 6,
-      catagoryName: 'AC Repair Services',
-      // onemore: ',
-      image: require('../assets/acrepair.png')
-    },
-
-  ]
 
     return (
         <>
@@ -153,8 +161,8 @@ export default function Home({navigation}) {
                 Ayodhya Nagar,Bhopal
               </Text>
             </View>
-            <TouchableOpacity>
-              {/* onPress={() => navigation.navigate("HomeOneScroll")} */}
+            <TouchableOpacity
+              onPress={() => navigation.navigate("HomeOneScroll")}>
               <View
                 style={{
                   borderRadius: 15,
@@ -259,6 +267,7 @@ export default function Home({navigation}) {
                   }}>
                   25%
                 </Text>
+                
                 <Text
                   style={{
                     fontSize: 12,
@@ -275,7 +284,46 @@ export default function Home({navigation}) {
           
   
             <View style={{marginTop: 30}}>
-              <Text style={{fontSize:20,color:'black',fontWeight:'700'}}>Categories</Text>
+           <TouchableOpacity>
+              <Text style={{fontSize:20,color:'black',fontWeight:'700'}}  onPress={() => navigation.navigate("Salonforwomen")}>Categories</Text>
+              </TouchableOpacity>
+              {/* <Image  style={{ width: '74%', height: '69%', borderRadius: 20, left: 14, top: 10}} source={{ uri: 'https://seekme-app.s3.ap-south-1.amazonaws.com/main-container/237c6ce0-7208-4ca1-a772-8225454acb0csolun.jpg' }}/> */}
+              
+              
+              <FlatList style={{height:300,}}
+                        numColumns={3}
+                        // keyExtractor={(item) => item.id}
+                        // keyExtractor = {item => item._id.toString()}  
+                        data={categories.result}
+                        
+                        renderItem={({ item }) => (
+                         
+                          <TouchableOpacity  onPress={() => navigation.navigate("Salonforwomen",{id:item._id,head:item.name})}>
+                            {/* // <TouchableOpacity onPress={() => navigation.navigate("Salonforwomen")}>  */}
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', }}>
+                                    <View style={{ backgroundColor: '#ffffff', borderRadius: 20, width: 101, height: 140, margin: 10, marginRight: 0, marginBottom: 0 }}>
+                                        <Image key={item._id}
+                                            style={{ width: '74%', height: '69%', borderRadius: 20, left: 14, top: 10}}
+                                            source={{ uri: item.image}} alt='services'
+                                        />
+                                        {/* <Image source={{ uri: 'https://seekme-app.s3.ap-south-1.amazonaws.com/main-container/237c6ce0-7208-4ca1-a772-8225454acb0csolun.jpg' }}/> */}
+                                        {/* <View style={{ borderRadius: 20,backgroundColor:'white', left: 14, top: 10 ,height:400,width:400}} /> */}
+                                        <Text key={item._id} style={{ fontSize: 14, top: 10, color: '#161616', textAlign: 'center' }}>{item.name}</Text>
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+                        )}
+                    />
+            
+
+            {/* <View style={{marginTop: 320}}>
+              {/* <Text style={{fontSize:20,color:'black',fontWeight:'700'}}>Categories</Text> */}
+            
+             
+{/* </View>  */}
+
+            
+{/*             
             <FlatList
             style={{ height: 350 }}
             keyExtractor = {item => item._id.toString()}  
@@ -294,19 +342,19 @@ export default function Home({navigation}) {
                     // source = {{uri:item.image}}
                    />
                     </TouchableOpacity>
+                    )} */}
                     
-                      <Text style={{ fontSize: 16, textAlign: 'center', color: '#161616', fontWeight: '500' }}>{item.catagoryName}</Text>
+                      {/* <Text style={{ fontSize: 16, textAlign: 'center', color: '#161616', fontWeight: '500' }}>{item.catagoryName}</Text> */}
                     
                     {/* <Text style={{ fontSize: 16, textAlign: 'center', color: '#161616', fontWeight: '500' }}>{item.onemore}</Text> */}
-                  </View>
-                </View>
-               )}}
+                 
                 
-          />
+          {/* /> */}
         </View>
 
             <View style={{top: 15}}>
               <NextHM />
+              
             </View>
   
             {/* <SelectDate visible={Popup} closeCallback={()=>setPopup(false)} navigation={navigation} />   */}
@@ -321,7 +369,7 @@ export default function Home({navigation}) {
     )
   };
 
-
+  export default Home;
 
 
 

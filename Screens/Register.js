@@ -205,7 +205,8 @@ const Register = ({navigation}) => {
           </View>
 
           <TouchableOpacity
-            onPress={() => navigation.navigate(Home)}
+            // onPress={() => navigation.navigate("Home")}
+            onPress={() => navigation.navigate("Home")}
             style={{
              marginTop:40,
               borderRadius: 5,
