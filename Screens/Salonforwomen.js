@@ -318,14 +318,6 @@
 //  }
 //  export default Salonforwomen;
 
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React, { useEffect, useState } from 'react';
 import { useRoute } from '@react-navigation/native';
 import {
@@ -469,11 +461,7 @@ const route=useRoute();
                    
                       source={{uri:item.image}}
                     />
-                    {/* <Image
-                      style={{ borderRadius: 12, width: 135, height: 170, margin: 8 }}
-                   
-                      source={{ uri:item.categoryId.image }}
-                    /> */}
+                    
                   
                     
                       <Text style={{ fontSize: 16, textAlign: 'center', color: '#161616', fontWeight: '500' }}>{item.name}</Text>

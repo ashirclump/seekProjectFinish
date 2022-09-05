@@ -1,5 +1,12 @@
 import React from 'react';
-import {ScrollView, Text, View, TouchableOpacity,Image,FlatList} from 'react-native';
+import {
+  ScrollView,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  FlatList,
+} from 'react-native';
 
 import {
   Colors,
@@ -20,7 +27,7 @@ import Edit from 'react-native-vector-icons/Feather';
 import Time from 'react-native-vector-icons/Ionicons';
 
 const SummaryFinal = (props) => {
-    const {navigation,route}=props;
+  const {navigation, route} = props;
   const address =
     '89,Bhel Nagar,piplani,Ayodhya Bypass,Bhopal\nMadhya Pradesh 462022,India';
   const time = 'Sat,Apr 09 - 07:30PM ';
@@ -28,7 +35,7 @@ const SummaryFinal = (props) => {
     <>
       <View style={{marginHorizontal: 10, backgroundColor: 'white'}}>
         <ScrollView>
-          <Head title="Summary" />
+          <Head title="SummaryFinal" navigation={navigation}/>
           <View
             style={{
               borderRadius: 12,
@@ -36,11 +43,12 @@ const SummaryFinal = (props) => {
               borderWidth: 1,
               padding: 20,
               marginTop: 20,
+              bottom:10
             }}>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row',}}>
               <Home name="home" size={20} style={{left: 10}} />
               <Text style={{left: 20}}>Home</Text>
-              <Edit name="edit-2" size={15} style={{left: 240}} />
+              <Edit name="edit-2" size={15} style={{left: 220}} />
             </View>
             <Text style={{fontSize: 12, lineHeight: 18, left: 40}}>
               {address}
@@ -48,52 +56,84 @@ const SummaryFinal = (props) => {
             <View style={{flexDirection: 'row'}}>
               <Time name="time-outline" size={20} style={{left: 10, top: 5}} />
               <Text style={{left: 20, fontSize: 12, top: 10}}>{time}</Text>
-              <Edit name="edit-2" size={15} style={{left: 160, top: 5}} />
+              <Edit name="edit-2" size={15} style={{left: 130, top: 5}} />
             </View>
           </View>
 
-   
-     <View style={{marginTop:20,marginHorizontal:5 }}>
+          <View style={{marginTop: 20, marginHorizontal: 5}}>
+            <View
+              style={{
+                borderRadius: 12,
+                padding: 15,
+                backgroundColor: '#EBEBEB',
+              }}>
+              <FlatList
+                //  style={{ height:800 }}
+                // data={route.params.id}
+                //  horizontal={true}
+                //  numColumns={2}
+                renderItem={({item}) => {
+                  return (
+                    <View>
+                      <Text style={{fontSize: 16, color: '#161616'}}>
+                        Selected Services
+                      </Text>
+                      <View
+                        style={{
+                          borderWidth: 1,
+                          borderColor: '#161616',
+                          width: 125,
+                        }}></View>
+                      {/* <Image
+                        style={{
+                          width: 100,
+                          height: 77,
+                          borderRadius: 12,
+                          top: 20,
+                        }} */}
+                        {/* // source={{uri: item.image}} */}
+                      {/* /> */}
+                      <Text
+                        style={{
+                          left: 120,
+                          fontSize: 16,
+                          color: '#161616',
+                          fontWeight: '500',
+                          top: -50,
+                        }}>
+                        {/* // {item.name} */}
+                      </Text>
+                      <Text
+                        style={{
+                          left: 120,
+                          fontSize: 16,
+                          color: '#5E17EB',
+                          fontWeight: '500',
+                          top: -45,
+                        }}>
+                        {/* ₹{item.price} */}
+                      </Text>
 
-      <View style={{borderRadius:12,padding:15,backgroundColor:'#EBEBEB'}}>
-  
-  <FlatList
-          //  style={{ height:800 }}
-           data={route.params.id}
-           //  horizontal={true}
-          //  numColumns={2}
-           renderItem={({ item }) => {
-             return (
-               <View>
-                <Text style={{fontSize:16,color:'#161616'}}>Selected Services</Text>
-  <View style={{borderWidth:1,borderColor:'#161616',width:125}}></View>
-  <Image
-                                    style={{ width: 100,height:77,borderRadius:12,top:20 }}
-                                    source={{uri:item.image}}
-                                />
-  <Text style={{left:120,fontSize:16,color:'#161616',fontWeight:'500',top:-50}}>{item.name}</Text>
-  <Text style={{left:120,fontSize:16,color:'#5E17EB',fontWeight:'500',top:-45}}>₹{item.price}</Text>
-
-                   <Text style={{ fontSize: 14,  color: '#757575', fontWeight: '400'}}>{'\u2B24' + ' '}{item.name}</Text>
-
-               </View>
- 
-               
-             )
- 
-           }}
- 
- 
- 
-         />
-       
-
-</View>
-
-     
-     </View>
-
- 
+                      <Text
+                        style={{
+                          fontSize: 14,
+                          color: '#757575',
+                          fontWeight: '400',
+                        }}>
+                        {'\u2B24' + ' '}
+                        {/* {item.name} */}
+                      </Text>
+                    </View>
+                  );
+                }}
+              />
+            </View>
+          </View>
+<CardRelated 
+// image={props.route.params.image}
+            // name={props.name}
+//             price={props.route.params.price}
+            />
           <Summarylist />
 
           <View
@@ -104,9 +144,11 @@ const SummaryFinal = (props) => {
               elevation: 10,
               backgroundColor: 'white',
             }}>
-            <TouchableOpacity onPress={() => navigation.navigate('AddMoney')}>
+            <TouchableOpacity 
+            // onPress={() => navigation.navigate('AddMoney')}
+            >
               <Text style={{fontSize: 16, color: '#161616'}}>
-                Payment Sumary
+                Payment Sumary  {props.named}
               </Text>
             </TouchableOpacity>
 
@@ -116,8 +158,10 @@ const SummaryFinal = (props) => {
                 borderColor: '#161616',
                 width: 100,
               }}></View>
-            <Text style={{top: 15, fontWeight: '400'}}>Item Total</Text>
-            <Text style={{left: 290}}>₹{route.params.name}</Text>
+            <Text style={{top: 15, fontWeight: '400'}}>Item Total  {props.named}</Text>
+            <Text style={{left: 290}}>₹
+            {route.params.name}
+            </Text>
             <Text style={{top: 15, fontWeight: '400'}}>Item Discount</Text>
             <Text style={{left: 290, fontSize: 14, color: '#52B46B'}}>
               - ₹50
@@ -135,19 +179,18 @@ const SummaryFinal = (props) => {
    <View style={{borderRadius:10,padding:20,left:10,width:'50%',backgroundColor:'#5E17EB'}}>
        <Text style={{textAlign:'center',color:'white'}}>Request Now</Text>
    </View> */}
-              <TouchableOpacity onPress={() => navigation.navigate('AddMoney')}>
-                <View
-                  style={{
+              <TouchableOpacity onPress={() => navigation.navigate('AddMoney')}                   style={{
                     borderRadius: 10,
                     padding: 15,
                     backgroundColor: 'rgba(94, 23, 235, 1)',
-                    width: '390%',
+                    width: 330,
                     right: 2,
                   }}>
+                
                   <Text style={{textAlign: 'center', color: 'white'}}>
                     Pay ₹749
                   </Text>
-                </View>
+                
               </TouchableOpacity>
             </View>
             <View

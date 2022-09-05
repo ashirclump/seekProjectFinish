@@ -113,13 +113,13 @@ import Sucessfullbokkking from './Sumrryslot/Sucessfullbokking';
 import Bookingdelayed from './Sumrryslot/Bookingdelayed';
 import Payment from './Sumrryslot/Payment'
 import SelectDate from './Sumrryslot/SelectDate';
-import SelectTime from './Sumrryslot/SelectTime';
+
 import Tabs from './Screens/Components/Tabs'
 import Register from './Screens/Register';
 import SelectedServices from './Screens/SelectedServices'
-
+import  carddata  from './Screens/carddata';
 import  Super  from './Screens/Super';
-// import Map from  './Screens/Map'
+import SelectTime from './Sumrryslot/SelectTime';
 
 
 
@@ -174,7 +174,8 @@ function App() {
       {/* <Stack.Screen options={{ headerShown: false }} name="Diamond" component={Diamond} /> */}
       <Stack.Screen options={{ headerShown: false }} name="Sumary" component={Sumary} />
       <Stack.Screen options={{ headerShown: false }} name="SelectedServices" component={SelectedServices} />
-      <Stack.Screen options={{ headerShown: false }} name="Super" component={Super} />
+      <Stack.Screen options={{ headerShown: false }} name="carddata" component={carddata} />
+    
 
 
 

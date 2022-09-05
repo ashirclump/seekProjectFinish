@@ -13,7 +13,7 @@ import {
 import Modal from 'react-native-modal';
 import Plus from 'react-native-vector-icons/AntDesign';
 import News from 'react-native-vector-icons/FontAwesome';
-import SelectTime from './SelectTime';
+// import SelectTime from './SelectTime';
 
 
 
@@ -106,7 +106,7 @@ const SelectDate = ({ visible, closeCallback, shareOptionCallback , navigation }
                         </View>
 
                     </View>
-  <SelectTime visible={Popup} closeCallback={()=>setPopup(false)} navigation={navigation}/>
+  {/* <SelectTime visible={Popup} closeCallback={()=>setPopup(false)} navigation={navigation}/> */}
 
                 </ScrollView>
             </KeyboardAvoidingView>
