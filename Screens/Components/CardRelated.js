@@ -28,6 +28,8 @@ import Star from 'react-native-vector-icons/AntDesign';
 const HelloWorldApp = props => {
   const {navigation, route} = props;
 
+
+  
   return (
     <>
       <View style={{marginTop: 20, marginHorizontal: 5}}>
@@ -83,7 +85,7 @@ const HelloWorldApp = props => {
 
           <FlatList
             //  style={{ height:800 }}
-            data={props.id}
+            data={props.dom}
             //  horizontal={true}
             //  numColumns={2}
             renderItem={({item}) => {

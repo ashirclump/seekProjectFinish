@@ -30,6 +30,8 @@ import FacebookSignIn from './FacebookSignIn';
 
 const Register = ({navigation}) => {
   const [mob, setMob] = React.useState('');
+
+
   const _login = () => {
     if (mob == '') {
       Alert.alert('Alert', 'Enter mobile no.', [
@@ -38,22 +40,37 @@ const Register = ({navigation}) => {
     } else {
       if (mob.length == 10) {
         // make api call for auth the user
-
-        const myHeaders = new Headers();
-        myHeaders.append('Content-Type', 'application/json');
-
-        fetch('http://3.109.48.115:5500/user/signup', {
-          method: 'POST',
-          headers: myHeaders,
-          body: JSON.stringify({contactNo: mob}),
-          redirect: 'follow',
-        })
-          .then(response => response.json())
-          .then(() => {
-            navigation.navigate('Otp', {contact: mob});
-          })
-          .catch(error => console.log('error', error));
-        // navigation.navigate("Otp", {contact: mob});
+        // const User = (serviceId) => {
+          const requestOptions = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+              Authorization:
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0Tm8iOiIxMjM0NTY3ODkwIiwidXNlcklkIjoiNjMxNDdmODNlM2I4ZjY3ODFjZTkyMjA0IiwiaWF0IjoxNjYyOTc5Mzg0LCJleHAiOjE2NjI5ODY1ODR9.6LFiTJctRspsfilcOEVjKjIpJ8BEH6m3TkLsv06vxBM',
+               },
+            body: JSON.stringify({
+              contactNo:mob
+            }),
+          };
+      
+          fetch(
+            // 'https://gorest.co.in/public/v1/users'
+            "http://13.126.187.109:5500/user/signup",
+            requestOptions,
+          )
+            .then(otpData => otpData.json())
+            .then(resp => {
+              console.log('Fetch API Response', resp.otpData.code);
+              console.log('Fetch API Response', resp);
+            //   if (resp) {
+            //     props.navigation.navigate("SummaryFinal")}
+            // })
+            // .catch(error => {
+            //   console.error(error);
+            });
+          // };
+        navigation.navigate("Otp", {contact:mob});
       } else {
         Alert.alert('Alert', "You're entered invalid contact number", [
           {text: 'OK', onPress: () => console.log('OK Pressed')},

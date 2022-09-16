@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, FlatList, Button, ScrollView, TouchableOpacity,
 // import User from 'react-native-vector-icons/MaterialCommunityIcons';
 // import Simple from 'react-native-vector-icons/SimpleLineIcons';
 // import OtpInputs from 'react-native-otp-inputs';
-// //import OTPInputView from '@twotalltotems/react-native-otp-input';
+// import OTPInputView from '@twotalltotems/react-native-otp-input';
 // import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 
@@ -76,10 +76,10 @@ export default function App({ navigation, route }) {
       // api call for varification
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-      fetch("http://3.109.48.115:5500/user/verification", {
+      fetch("http://13.126.187.109:5500/user/verification", {
         method: 'POST',
         headers: myHeaders,
-        body: JSON.stringify({"code": code}),
+        body: JSON.stringify({contact}),
         redirect: 'follow'
       })
         .then(response => response.json())
@@ -90,10 +90,10 @@ export default function App({ navigation, route }) {
               result.error,
               [
                   {text: 'OK', onPress: () => {
-                    setPin1("");
-                    setPin2("");
-                    setPin3("");
-                    setPin4("");
+                    setPin1("0");
+                    setPin2("0");
+                    setPin3("0");
+                    setPin4("1");
                     pin1Ref.current.focus();
                   }},  
               ]  
@@ -216,7 +216,7 @@ export default function App({ navigation, route }) {
       {/* <OTPInputView
     style={{width: '80%', height: 200}}
     pinCount={4}
-    code=""
+    code="resp.otpData.code"
     autoFocusOnLoad={true}
     // codeInputFieldStyle={styles.borderStyleBase}
     // codeInputHighlightStyle={styles.borderStyleHighLighted}

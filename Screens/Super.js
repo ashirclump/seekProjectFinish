@@ -433,6 +433,37 @@
 // export default App;
 
 
+
+
+
+ {/* <Checkbox
+                      style={styles.rad}
+                      uncheckedColor={'#5E17EB'}
+                      color={'green'}
+                      status={
+                        checked.includes(item._id) ? 'checked' : 'unchecked'
+                      }
+                      // onValueChange={newValue => setToggleCheckBox(newValue)}
+                      onPress={() => {
+                        id:{item._id}
+                        console.log('item select', item._id);
+                        const newIds = [...checked];
+                        const index = newIds.indexOf(item._id);
+
+                        if (index > -1) {
+                          newIds.splice(index, 1);
+                        } else {
+                          newIds.push(item._id);
+                        }
+                        setChecked(newIds);
+                        setToggleCheckBox(newIds);
+                        setPress(false);
+                      }}
+                    /> */}
+
+
+
+
 import { View, Text, FlatList, StyleSheet, Image } from "react-native";
 import React, { useState, useEffect } from "react";
 // const [isLog, setIsLog] = useState(true);
@@ -627,3 +658,208 @@ export const UserList: React.FunctionComponent<UserListProps> = ({
   );
 };
 */}
+
+// import React, {Component} from 'react';
+// import {View, Text, Button, StyleSheet} from 'react-native';
+
+// const getMoviesFromApi = () => {
+//   console.log('Fetch API Call');
+
+//   const requestOptions = {
+//     method: 'GET',
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify({
+//       name: 'Abhi',
+//       OS: 'Android',
+//     }),
+//   };
+
+//   fetch('https://reactnative.dev/movies.json', requestOptions)
+//     .then(response => response.json())
+//     .then(json => {
+//       console.log('Fetch API Response', json.movies);
+//       console.log('Fetch API Response', json.title);
+//       console.log('Fetch API Response', json.description);
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+// };
+
+// const postUser = () => {
+//   const requestOptions = {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Accept: 'application/json',
+//       Authorization:
+//         'Bearer d484c6e730cc22caf59cce6ee33c6ed1142a56f77dee4ac6b86ea8341492e408',
+//         // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0Tm8iOiIxMjM0NTY3ODkwIiwidXNlcklkIjoiNjMwYzZmYjc5OTNjMThhNTZkMDhiOGNhIiwiaWF0IjoxNjYyMTg4ODIzLCJleHAiOjE2NjIxOTYwMjN9.ScRyiWqamgOifkmTcfKWDQ0okyOBlwtUBNvTRZDQKHg',
+       
+//     },
+//     body: JSON.stringify({
+//       email: 'didibaba@gmail.com',
+//       name: 'rayeen',
+//       gender: 'male',
+//       status: 'active',
+//     }),
+//   };
+
+//   fetch(
+//     'https://gorest.co.in/public/v1/users'
+//     // 'http://13.126.187.109:5500/user/addtocart'
+//   , requestOptions)
+//     .then(response => response.json())
+//     .then(json => {
+//       console.log('Fetch API Response', json.data);
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+// };
+
+// const getUsers = () => {
+//   const requestOptions = {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Accept: 'application/json',
+//       Authorization:
+//         'Bearer d484c6e730cc22caf59cce6ee33c6ed1142a56f77dee4ac6b86ea8341492e408',
+//     },
+//   };
+
+//   fetch('https://gorest.co.in/public/v1/users', requestOptions)
+//     .then(response => response.json())
+//     .then(json => {
+//       console.log('Fetch API Response', json.data);
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+// };
+
+
+// export default class FetchAPIExample extends Component {
+//   render() {
+//     return (
+//       <View>
+//         <Text
+//           style={{fontWeight: 'bold', fontSize: 20, padding: 10, margin: 10}}>
+//           Fetch API for your networking Data. API Credit: GoRest
+//           https://gorest.co.in
+//         </Text>
+//         <View
+//           style={{
+//             margin: 10,
+//             marginTop: 50,
+//             padding: 20,
+//             marginHorizontal: 16,
+//           }}>
+//           <Button title="POST: Create User" onPress={() => postUser()} />
+//         </View>
+
+//         <View
+//           style={{
+//             margin: 10,
+//             marginTop: 20,
+//             padding: 20,
+//             marginHorizontal: 16,
+//           }}>
+//           <Button title="Get: Get UserList" onPress={() => getUsers()} />
+//         </View>
+
+//         <View
+//           style={{
+//             margin: 10,
+//             marginTop: 20,
+//             padding: 20,
+//             marginHorizontal: 16,
+//           }}>
+//           <Button
+//             title="PUT / PATCH: Update user"
+//             onPress={() => UpdateUser()}
+//           />
+//         </View>
+
+//         <View
+//           style={{
+//             margin: 10,
+//             marginTop: 20,
+//             padding: 20,
+//             marginHorizontal: 16,
+//           }}>
+//           <Button title="Delete: Delete user" onPress={() => deleteUser()} />
+//         </View>
+//       </View>
+//     );
+//   }
+// }
+
+
+// const getMoviesFromApiSimple = async () => {
+//   try {
+//     const response = await fetch('https://reactnative.dev/movies.json');
+//     console.log('API status code: ', response.status);
+//     console.log('API status msg: ', response.responseText);
+//     console.log('API status: ', response.ok);
+
+//     const json = await response.json();
+//     console.log('API response: ', json.movies);
+//     return json.movies;
+//   } catch (error) {
+//     console.log('API failed to connet', error);
+//     console.error(error);
+//   }
+// };
+
+// const getMoviesFromApiWithAsyncAndAwit = async () => {
+//   const response = await fetch('https://reactnative.dev/movies.json');
+//   const json = await response.json();
+//   console.log('success', json.movies);
+//   return json.movies;
+// };
+
+// const getMoviesFromApiWithMethodTypeAndHeader = async () => {
+//   const requestOptions = {
+//     method: 'GET',
+//     headers: {'Content-Type': 'application/json'},
+//   };
+
+//   const response = await fetch(
+//     'https://reactnative.dev/movies.json',
+//     requestOptions,
+//   );
+//   const json = await response.json();
+//   console.log('success', json.movies);
+//   return json.movies;
+// };
+
+// const userPost = async () => {
+//   const requestOptions = {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Accept: 'application/json',
+//       Authorization:
+//         'Bearer d484c6e730cc22caf59cce6ee33c6ed1142a56f77dee4ac6b86ea8341492e408',
+//     },
+//     body: JSON.stringify({
+//       name: 'Abhishek',
+//       email: 'myemail1@gmail.com',
+//       gender: 'male',
+//       status: 'active',
+//     }),
+//   };
+
+//   const response = await fetch(
+//     'https://gorest.co.in/public/v1/users',
+//     requestOptions,
+//   );
+//   const json = await response.json();
+//   console.log('success', json.data);
+//   return json.movies;
+// };
+
+
+

@@ -46,38 +46,7 @@ import Diamond from '../Diamond';
   const [Popup, setPopup] = useState(false);
 
  
-    const categories = [
-        {
-          id: 1,
-          title: 'Pearl Facial',
-          onemore: '₹599 onwords',
-          image: require('../../assets/fone.png')
-        },
-        {
-          id: 2,
-          title: 'Gold facial',
-          onemore: '₹699 onwords',
-    
-          image: require('../../assets/ftwo.png')
-        },
-        {
-          id: 3,
-          title: 'Diamond facial',
-          onemore: '₹799 onwords',
-    
-          image: require('../../assets/fthree.png')
-        },
-        // {
-        //   id: 4,
-        //   title: 'Threading',
-        //   onemore: '₹59 onwords',
-    
-        //   // title1:'ajdlfjdjfj',
-        //   image: require('../../assets/sfour.png')
-        // },
-    
-      ]
- 
+  
    return (<>
      <View style={{ marginTop: 20 }}>
  

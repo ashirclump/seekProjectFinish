@@ -1,167 +1,159 @@
-// // // /**
-// // //  * Sample React Native App
-// // //  * https://github.com/facebook/react-native
-// // //  *
-// // //  * @format
-// // //  * @flow strict-local
-// // //  */
+// import React, { useState, useEffect } from 'react';
+// import {
+//   SafeAreaView,
+//   ScrollView,
+//   StatusBar,
+//   StyleSheet,
+//   Text,
+//   useColorScheme,
+//   View,
+//   Image,
+//   TextInput,
+//   TouchableOpacity,
+//   FlatList
 
-// // import React, { useState, useEffect } from 'react';
-// // import {
-// //   SafeAreaView,
-// //   ScrollView,
-// //   StatusBar,
-// //   StyleSheet,
-// //   Text,
-// //   useColorScheme,
-// //   View,
-// //   Image,
-// //   TextInput,
-// //   TouchableOpacity,
-// //   FlatList
+// } from 'react-native';
 
-// // } from 'react-native';
+// import {
+//   Colors,
+//   DebugInstructions,
+//   Header,
+//   LearnMoreLinks,
+//   ReloadInstructions,
+// } from 'react-native/Libraries/NewAppScreen';
+// import Location from 'react-native-vector-icons/Ionicons';
+// import Noti from 'react-native-vector-icons/Ionicons';
+// import Plus from 'react-native-vector-icons/Entypo';
+// import LinearGradient from 'react-native-linear-gradient';
+// import Head from '../Screens/Components/Header';
+// // import Facialforglow from '../Screens/Components/Facialforglow';
+// import Diamond from './Diamond'
 
-// // import {
-// //   Colors,
-// //   DebugInstructions,
-// //   Header,
-// //   LearnMoreLinks,
-// //   ReloadInstructions,
-// // } from 'react-native/Libraries/NewAppScreen';
-// // import Location from 'react-native-vector-icons/Ionicons';
-// // import Noti from 'react-native-vector-icons/Ionicons';
-// // import Plus from 'react-native-vector-icons/Entypo';
-// // import LinearGradient from 'react-native-linear-gradient';
-// // import Head from '../Screens/Components/Header';
-// // // import Facialforglow from '../Screens/Components/Facialforglow';
-// // import Diamond from './Diamond'
+// export default function Hello(props) {
 
-// // export default function Facialforglow(props) {
+//  const data =  props.route.params.userId
+//    console.log('getIds',data);
 
-// //  const data =  props.route.params.userId
-// //    console.log('getIds',data);
+// const [Popup, setPopup] = useState(false);
 
-// // const [Popup, setPopup] = useState(false);
+//   const [addToCart, setAddToCart] = useState([]);
+//   const [val, setVal] = useState({
+//     name: "",
+//     price: "",
+//     id: ""
+//   });
 
-// //   const [addToCart, setAddToCart] = useState([]);
-// //   const [val, setVal] = useState({
-// //     name: "",
-// //     price: "",
-// //     id: ""
-// //   });
+//   const _addToCard = id => {
+//     Alert.alert(
+//       'Alert',
+//       id,
+//       [
+//           {text: 'OK', onPress: () => console.log('OK Pressed')},
+//       ]
+//     );
+//   }
 
-// //   const _addToCard = id => {
-// //     Alert.alert(
-// //       'Alert',
-// //       id,
-// //       [
-// //           {text: 'OK', onPress: () => console.log('OK Pressed')},
-// //       ]
-// //     );
-// //   }
+//  useEffect(() => {
 
-// //  useEffect(() => {
+//    var myHeaders = new Headers();
+//    myHeaders.append("Content-Type", "application/json");
 
-// //  //   var myHeaders = new Headers();
-// //  //   myHeaders.append("Content-Type", "application/json");
+//    var raw = JSON.stringify({
+//     //  "code": serviceId
+//    });
+//    console.log('2222222', raw);
 
-// //  //   var raw = JSON.stringify({
-// //  //     "code": saloneForWomenId
-// //  //   });
-// //  //   console.log('2222222', raw);
+//    var requestOptions = {
+//      method: 'POST',
+//      headers: myHeaders,
+//      body: raw,
+//      redirect: 'follow'
+//    };
 
-// //  //   var requestOptions = {
-// //  //     method: 'POST',
-// //  //     headers: myHeaders,
-// //  //     body: raw,
-// //  //     redirect: 'follow'
-// //  //   };
+//    fetch("http://13.126.187.109:5500/user/addtocart", requestOptions)
+//    .then(response => response.json())
+//    .then(success => console.log(success))
+//    .catch(error => console.log('error', error));
+//  }, [])
 
-// //  //   fetch("http://3.109.48.115:5500/admin/subSalonforWomenPost", requestOptions)
-// //  //   .then(response => response.json())
-// //  //   .then(success => console.log(success))
-// //  //   .catch(error => console.log('error', error));
-// //  }, [])
+//  return (
+//      <>
+//      <ScrollView>
+//      <View >
+//          <Head title="Facial for glow" />
+//          {/* <Facialglow /> */}
+//          <View style={{ marginTop: 20 }}>
 
-// //  return (
-// //      <>
-// //      <ScrollView>
-// //      <View >
-// //          <Head title="Facial for glow" />
-// //          {/* <Facialglow /> */}
-// //          <View style={{ marginTop: 20 }}>
+//           <FlatList
+//             style={{ height: 800, position: 'absolute', marginHorizontal: 20 }}
+//             data={data}
+//             //  horizontal={true}
+//             numColumns={2}
+//             renderItem={({ item }) => {
+//               return (
+//                 <View style={{ alignContent: 'center', alignItems: 'center', height:250, width: 150 }}>
+//                   <View style={{ borderRadius: 12, padding: 20, margin: -10, backgroundColor: '#FFFFFF', height: 240, width: 130 }}>
+//                     {/* <Image
+//                       style={{ borderRadius: 12, borderWidth: 0.5, width: 100, height: 200}}
+//                       source={{uri : item.images}}
+//                     /> */}
+//                     <Image
+//                           style={{ borderRadius: 12, borderWidth: 0.5, width : 90, height : 120}}
+//                           source={require('../assets/swoman.png')}
+//                         />
+//                     <View style={{}}>
+//                         <Text style={{ fontSize: 16, textAlign: 'center', color: '#161616', fontWeight: '500', top: 10, height : 20, width : 105}}>{item.subSalonforWomenName}</Text>
+//                         <Text style={{ fontSize: 14, textAlign: 'center', color: '#5E17EB', fontWeight: '400', top: 10 }}>{item.price}</Text>
+//                     </View>
+//                     <TouchableOpacity onPress={() => {
+//                       setVal({name: item.subSalonforWomenName, price: item.price, id: item._id})
+//                       setPopup(true);
+//                     }}>
+//                       <View style={{ borderRadius: 12, width: 30, height: 30, alignContent: 'center', justifyContent: 'center', backgroundColor: '#5E17EB', left: 60, top: 20 }}>
+//                         <Plus name='plus' size={20} color={'white'} style={{ textAlign: 'center' }} />
+//                       </View>
+//                     </TouchableOpacity>
+//                   </View>
+//                 </View>
 
-// //           <FlatList
-// //             style={{ height: 800, position: 'absolute', marginHorizontal: 20 }}
-// //             data={data}
-// //             //  horizontal={true}
-// //             numColumns={2}
-// //             renderItem={({ item }) => {
-// //               return (
-// //                 <View style={{ alignContent: 'center', alignItems: 'center', height:250, width: 150 }}>
-// //                   <View style={{ borderRadius: 12, padding: 20, margin: -10, backgroundColor: '#FFFFFF', height: 240, width: 130 }}>
-// //                     {/* <Image
-// //                       style={{ borderRadius: 12, borderWidth: 0.5, width: 100, height: 200}}
-// //                       source={{uri : item.images}}
-// //                     /> */}
-// //                     <Image
-// //                           style={{ borderRadius: 12, borderWidth: 0.5, width : 90, height : 120}}
-// //                           source={require('../assets/swoman.png')}
-// //                         />
-// //                     <View style={{}}>
-// //                         <Text style={{ fontSize: 16, textAlign: 'center', color: '#161616', fontWeight: '500', top: 10, height : 20, width : 105}}>{item.subSalonforWomenName}</Text>
-// //                         <Text style={{ fontSize: 14, textAlign: 'center', color: '#5E17EB', fontWeight: '400', top: 10 }}>{item.price}</Text>
-// //                     </View>
-// //                     <TouchableOpacity onPress={() => {
-// //                       setVal({name: item.subSalonforWomenName, price: item.price, id: item._id})
-// //                       setPopup(true);
-// //                     }}>
-// //                       <View style={{ borderRadius: 12, width: 30, height: 30, alignContent: 'center', justifyContent: 'center', backgroundColor: '#5E17EB', left: 60, top: 20 }}>
-// //                         <Plus name='plus' size={20} color={'white'} style={{ textAlign: 'center' }} />
-// //                       </View>
-// //                     </TouchableOpacity>
-// //                   </View>
-// //                 </View>
+//               )
 
-// //               )
+//             }}
 
-// //             }}
+//           />
+//      <Diamond data={val} _addToCard={_addToCard} visible={Popup} closeCallback={() => setPopup(false)} navigation={props.navigation} />
 
-// //           />
-// //      <Diamond data={val} _addToCard={_addToCard} visible={Popup} closeCallback={() => setPopup(false)} navigation={props.navigation} />
+//    </View>
 
-// //    </View>
+//           {/* <Diamond visible={Popup} closeCallback={()=>setPopup(false)} navigation={props.navigation}/> */}
+//      </View>
+//      <View style={{marginHorizontal:20,right:20}}>
+//          <TouchableOpacity onPress={()=>navigation.navigate("SelectedServices")}>
+//  {/* {/ onPress={()=>setPopup(true)} /} */}
+//        <View style={{ alignItems: 'center',  borderRadius: 12, borderWidth: 1, padding: 20, backgroundColor: '#D8D8D8', borderColor: '#D8D8D8', width: '100%',top:622,justifyContent:'center',marginHorizontal:20}}>
 
-// //           {/* <Diamond visible={Popup} closeCallback={()=>setPopup(false)} navigation={props.navigation}/> */}
-// //      </View>
-// //      <View style={{marginHorizontal:20,right:20}}>
-// //          <TouchableOpacity onPress={()=>navigation.navigate("SelectedServices")}>
-// //  {/* {/ onPress={()=>setPopup(true)} /} */}
-// //        <View style={{ alignItems: 'center',  borderRadius: 12, borderWidth: 1, padding: 20, backgroundColor: '#D8D8D8', borderColor: '#D8D8D8', width: '100%',top:622,justifyContent:'center',marginHorizontal:20}}>
+//                  <Text style={{ color: '#858585', fontSize: 14, fontFamily: 'Poppins-Regular', fontWeight: '500' }}>Proceed</Text>
 
-// //                  <Text style={{ color: '#858585', fontSize: 14, fontFamily: 'Poppins-Regular', fontWeight: '500' }}>Proceed</Text>
+//              </View>
 
-// //              </View>
+//              </TouchableOpacity>
+//          </View>
+//      <View style={{height:600}}></View>
+//      </ScrollView>
+//      </>
+//  );
+// };
 
-// //              </TouchableOpacity>
-// //          </View>
-// //      <View style={{height:600}}></View>
-// //      </ScrollView>
-// //      </>
-// //  );
-// // };
+//  const HelloWorldApp = ( {navigation} ) => {
 
-// // //  const HelloWorldApp = ( {navigation} ) => {
+//    return (<>
+//
 
-// // //    return (<>
-// // //
+//    </>
+//    )
 
-// // //    </>
-// // //    )
-
-// // //  }
-// // //  export default HelloWorldApp;
+//  }
+//  export default HelloWorldApp;
 
 import React, {useState, useEffect} from 'react';
 import {
@@ -202,22 +194,7 @@ import Pb from './Components/Pb';
 import Modal from 'react-native-modal';
 import Star from 'react-native-vector-icons/AntDesign';
 import {Checkbox} from 'react-native-paper';
-
-const carddata = props => {
-  id: 'subSalonforWomen.result';
-};
-//   {image: subSalonforWomen.result.image},
-// {name: subSalonforWomen.result.name},
-// {price: subSalonforWomen.result.price}
-
-// export default function Facialforglow({props,navigation}) {
-// const route=useRoute();
-
-// const data =  props.route.params.userId
-// console.log('getIds',data);
-
-// useEffect(() => {
-
+import tokan from '../Screens/tokan'
 const Hello = props => {
   const {visible, closeCallback, shareOptionCallback, navigation, route} =
     props;
@@ -228,7 +205,7 @@ const Hello = props => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
   const [Press, setPress] = useState([]);
-
+ 
   const toggle = () => {
     setChecked(!checked);
   };
@@ -239,22 +216,89 @@ const Hello = props => {
     };
 
     fetch(
-      // "https://api.sampleapis.com/coffee/hot"
-
-      // "http://13.126.64.187:5500/admin/salonForWomenList"
-
       `http://13.126.187.109:5500/user/getservices/${props.route.params.id}`,
-      // "http://13.232.69.59:5500/admin//salonFormenList"
-      // "http://15.206.166.219:5500/user/getCategories"
+
       requestOptions,
     ).then(result => {
-      console.log('110', result);
+      
       result.json().then(resp => {
         setSubSalonforWomen(resp);
       });
     });
   }, []);
 
+  const postUser = serviceId => {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: tokan,
+        // 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0Tm8iOiI3ODk4ODU4NjAxIiwidXNlcklkIjoiNjMxNmVjOGNlM2I4ZjY3ODFjZTkyMmMwIiwiaWF0IjoxNjYyOTkyMzkwLCJleHAiOjE2NjI5OTk1OTB9.c9pZQEzQ7R09k7rRyxconN8aBVkPHWVZkgbnQOsuJug',
+      },
+      body: JSON.stringify({
+        serviceId,
+      }),
+    };
+
+    fetch(
+      // 'https://gorest.co.in/public/v1/users'
+      'http://13.126.187.109:5500/user/addtocart',
+      requestOptions,
+    )
+      .then(result => result.json())
+      .then(resp => {
+        if (resp) {
+            console.log('item post ', resp.result.serviceId)}
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  // code for add to cart
+
+  //       const requestOptions = {
+  //         method: 'GET',
+  //         headers: {
+  //           Accept: "application/json",
+  //           "Content-Type": "application/json",
+  //           // Authorization: "Bearer " + `${tokan}`,
+  //           Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0Tm8iOiIxMjM0NTY3ODkwIiwidXNlcklkIjoiNjMxNDdmODNlM2I4ZjY3ODFjZTkyMjA0IiwiaWF0IjoxNjYyNjE4NzgwLCJleHAiOjE2NjI2MjU5ODB9.JyCSKuvT7J649bovRPi8eGvQGsJHldHfkS4u0RxK_6U',
+  //         },
+  //         redirect: 'follow'
+  //       };
+
+  //       fetch("http://13.126.187.109:5500/user/getcar", requestOptions).then((result) => {
+  //         result.json().then((result) => {
+  //           // const data = resp.response.subSalonforWomen;
+  //           console.log('data', result);
+  //     if (result) {
+  //       props.navigation.navigate("Sumary", {
+  //         userId: result
+  //       })
+  //     }
+  //   })
+  // })
+  //       console.log('success', result)
+  //     })
+  //     .catch(error => console.log('error', error));
+  // }
+  // code for add to cart
+
+  // fetch(
+  //     'https://gorest.co.in/public/v1/users'
+  //     // 'http://13.126.187.109:5500/user/addtocart'
+  //   , requestOptions)
+  //     .then(response => response.json())
+  //     .then(json => {
+  //       console.log('Fetch API Response', json.data);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // };
+  const [cart, setCart] = useState([]);
   const [Popup, setPopup] = useState(false);
   const [Up, setUp] = useState(false);
   const done = 0;
@@ -277,41 +321,44 @@ const Hello = props => {
   //     redirect: 'follow'
   //   };
 
-  //   fetch("http://3.109.48.115:5500/admin/subSalonforWomenPost", requestOptions)
+  //   fetch("http://13.126.187.109:5500/user/getcart", requestOptions)
   //   .then(response => response.json())
   //   .then(success => console.log(success))
   //   .catch(error => console.log('error', error));
-  // }, []);
+  // };
 
   const [checked, setChecked] = useState([]);
   const ashir = 0;
   return (
     <>
-    <View style={{height: 700, backgroundColor: 'white'}}>
+      <View style={{height: 700, backgroundColor: 'white'}}>
         <Header navigation={navigation} title={route.params.head} />
         <View
           style={{
             Top: 10,
             alignContent: 'center',
-            left: 10,
+            // justifyContent:'center',
             alignContent: 'center',
           }}>
-        <FlatList
-            style={{height: 530, width: 400, position: 'absolute'}}
+          <FlatList
+            style={{height: 530, width: 400}}
             // key={index}
             //  horizontal={true}
             numColumns={2}
             data={subSalonforWomen.result}
-           extraData={ashir}
+            extraData={ashir}
             keyExtractor={item => item._id}
             maxToRenderPerBatch={1}
-           renderItem={({renderItem, item, index}) => (
+            renderItem={({renderItem, item, index}) => (
               <View
                 style={{
                   height: 250,
                   width: 160,
                   alignContent: 'center',
                   alignSelf: 'center',
+                  justifyContent: 'center',
+                  marginBottom: 10,
+                  margin: 5,
                 }}>
                 <View
                   style={{
@@ -323,8 +370,8 @@ const Hello = props => {
                     borderColor: '#E5E5E5',
                     alignSelf: 'center',
                   }}>
-                 <TouchableOpacity onPress={() => setPopup(true)}>
-                   <Image
+                  <TouchableOpacity onPress={() => setPopup(true)}>
+                    <Image
                       style={{
                         borderRadius: 12,
                         width: 135,
@@ -353,42 +400,81 @@ const Hello = props => {
                       fontWeight: '400',
                       top: 10,
                     }}>
-                    {item.price}
+                    ₹ {item.price}
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        color: '#757575',
+
+                        marginRight: 30,
+                        textDecorationLine: 'line-through',
+                      }}>
+                      ₹1299
+                    </Text>
                   </Text>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      textAlign: 'center',
-                      color: '#5E17EB',
-                      fontWeight: '400',
-                      top: 10,
-                    }}>
-                    {item.specialID}
-                  </Text>
-                       <View style={{marginLeft: 100}}>
-                    <Checkbox
-                      style={styles.rad}
-                      uncheckedColor={'#5E17EB'}
-                      color={'green'}
-                      status={
-                        checked.includes(item._id) ? 'checked' : 'unchecked'
-                      }
-                      // onValueChange={newValue => setToggleCheckBox(newValue)}
-                      onPress={() => {
-                        console.log('item select');
-                        const newIds = [...checked];
-                        const index = newIds.indexOf(item._id);
-                        if (index > -1) {
-                          newIds.splice(index, 1);
-                        } else {
-                          newIds.push(item._id);
-                        }
-                        setChecked(newIds);
-                        setToggleCheckBox(newIds);
-                        setPress(false);
-                      }}
-                    />
-<Diamond
+
+                  <View style={{marginLeft: 100}}>
+                    <TouchableOpacity
+                      key={item.id}
+                      style={{alignItems: 'center', marginTop: 10}}>
+                      <View>
+                        {/* <Text style={{ fontWeight: "bold" }}>{item.name}</Text> */}
+                        {cart.includes(item) ? (
+                          <TouchableOpacity
+                            onPress={() => [
+                              setCart(cart.filter(x => x.id !== item.id)),
+                              console.log('Remove items',item.name),
+                              setToggleCheckBox(false),
+                              setPress(true),
+                            ]}>
+                            <Check
+                              name="check"
+                              size={30}
+                              color={'white'}
+                              style={{
+                                borderRadius: 12,
+                                width: 40,
+                                height: 40,
+                                left: 0,
+                                borderColor: 'gray',
+                                backgroundColor: 'green',
+                                borderWidth: 1,
+
+                                padding: 5,
+                              }}
+                            />
+                          </TouchableOpacity>
+                        ) : (
+                          <TouchableOpacity
+                            onPress={() => [
+                              setCart([...cart, item]),
+                              setToggleCheckBox(true),
+                              console.log('items added',item.name),
+                              setPress(false),
+                              postUser(item._id),
+                            ]}>
+                            <Plus
+                              name="plus"
+                              size={30}
+                              color={'white'}
+                              style={{
+                                borderRadius: 12,
+                                width: 40,
+                                height: 40,
+                                borderColor: 'gray',
+                                backgroundColor: '#5E17EB',
+                                borderWidth: 1,
+
+                                padding: 5,
+                              }}
+                            />
+                          </TouchableOpacity>
+                        )}
+                      </View>
+                    </TouchableOpacity>
+
+                    <Diamond
+                      // onPress={() =>(item._id)}
                       visible={Popup}
                       dismiss={setPopup}
                       closeCallback={() => setPopup(false)}
@@ -399,36 +485,40 @@ const Hello = props => {
                       image={item.image}
                       name={item.name}
                       price={item.price}
+                      id={item._id}
                     />
                     <View style={{}}>
-                      <TouchableOpacity
-                        onPress={() =>
-                          navigation.navigate('Sumary', {
-                            id:item.result,
-                            image: item.image,
-                            name: item.name,
-                            price: item.price,
-                            des:item.description
-                          })
+                      {/* {/* <TouchableOpacity
+                        // onPress={() => handleCardItem(item._id)}
+                        onPress={() => postUser(item._id)
+                          // navigation.navigate('Sumary', {
+                          //   id: item.result,
+                          //   image: item.image,
+                          //   name: item.name,
+                          //   price: item.price,
+                          //   des: item.description,
+                          // })
                         }
                         onPressOut={() => setUp(false)}
                         style={[
                           styles.btn,
                           {backgroundColor: Press ? '#D8D8D8' : '#5E17EB'},
                         ]}
-                        disabled={!toggleCheckBox}>
-                        <Text style={{color: '#ffffff'}}>Proceed</Text>
-                      </TouchableOpacity>
+                        disabled={!toggleCheckBox}> */}
+                      {/* <Text style={{color: '#ffffff'}}>Proceed</Text>
+                      </TouchableOpacity> */}
                     </View>
                   </View>
                 </View>
               </View>
             )}
           />
+
           <TouchableOpacity
+            onPress={() => navigation.navigate('Sumary')}
             style={[
               styles.btn,
-              {backgroundColor: Press ? '#D8D8D8' : '#5E17EB', top: 520},
+              {backgroundColor: Press ? '#D8D8D8' : '#5E17EB', top: 620,alignSelf:'center'},
             ]}
             disabled={!toggleCheckBox}>
             <Text style={{color: '#ffffff'}}>Proceed</Text>
@@ -440,7 +530,6 @@ const Hello = props => {
 };
 
 export default Hello;
-export {carddata};
 
 const styles = StyleSheet.create({
   container: {
@@ -475,24 +564,21 @@ const styles = StyleSheet.create({
     height: 47,
     width: 310,
     justifyContent: 'center',
-    // flexDirection: "row",
+
     alignItems: 'center',
     borderRadius: 10,
-    // position: 'absolute',
+
     borderWidth: 1,
-    // borderRadius: 12,
+
     borderWidth: 1,
     flexDirection: 'column',
     position: 'absolute',
     borderColor: '#D8D8D8',
     width: '90%',
-    // marginHorizontal: 50,
-    // position:'relative',
-    // top:100,
+
     alignContent: 'center',
-    // alignSelf: 'center',
-    bottom:30,
-    // zIndex:1
+
+    bottom: 30,
   },
   red: {
     marginLeft: 16,
@@ -519,24 +605,6 @@ const styles = StyleSheet.create({
   },
 });
 
-{
-  /* <View>
-                  <TouchableOpacity 
-                  
-                  onPress={() => [toggle(false)]
-                  }
-                  style={{
-                    backgroundColor: Press ? "green" : "#5E17EB",
-                    borderRadius: 12, width: 40, height: 40, alignContent: 'center', justifyContent: 'center', left: 100, top: 0,
-                  }}>
-                  <View style={{alignSelf:'center',textAlign: 'center'}}>
-                  <Text style={{}}>{Press? <Check name='check' size={20} color={'white'} />:<Plus name='plus' size={20} color={'white'}/>}</Text>
-                
-                  </View>
-                 </TouchableOpacity> 
-
-</View> */
-}
 // import React, { useState, useEffect } from 'react';
 // import { Text, View, StyleSheet, ScrollView,Image,TouchableOpacity } from 'react-native';
 
@@ -556,7 +624,8 @@ const styles = StyleSheet.create({
 //         redirect: 'follow'
 //       };
 
-//       fetch("https://api.sampleapis.com/coffee/hot"
+//       fetch('http://13.126.187.109:5500/user/getCategories'
+//         // "https://api.sampleapis.com/coffee/hot"
 
 //         // "http://13.232.69.59:5500/admin/salonForWomenList"
 
@@ -577,7 +646,7 @@ const styles = StyleSheet.create({
 //     <View style={styles.container}>
 //       <ScrollView>
 //         <View>
-//           {subSalonforWomen.map((setSubSalonforWomen,index) => {
+//           {subSalonforWomen.result[0].map((setSubSalonforWomen,index) => {
 //             return (
 //               <View style={{  height: 250,backgroundColor:'red'}}>
 
@@ -586,21 +655,13 @@ const styles = StyleSheet.create({
 //                  <TouchableOpacity
 //                 key={index}
 //                 style={{
-//                   // height: 50,
-//                   // width:180,
-//                   // margin: 3,
-//                   // elevation: 5,
-//                   // shadowOffset: { width: 1, height: 1 },
-//                   // shadowColor: "black",
-//                   // shadowOpacity: 0.36,
-//                   // shadowRadius: 6.68,
-//                   // borderRadius: 10,
+
 //                   flexWrap:'wrap',
 //                   justifyContent:'flex-start'
 
 //                 }}>
 //                 {/* <Text style={{fontSize:10,justifyContent:'center'}}>{setSubSalonforWomen.description}</Text> */}
-//                 <Text style={{fontSize:10,justifyContent:'center'}}>{setSubSalonforWomen.title}</Text>
+//                 <Text style={{fontSize:15,justifyContent:'center'}}>{setSubSalonforWomen.name}</Text>
 //                 <Image style={{borderRadius: 12, width : 105, height : 100,alignSelf:'center'}} source={{uri:setSubSalonforWomen.image}}/>
 //                 <TouchableOpacity onPress={(index) => toggle(false)}
 //                   style={{

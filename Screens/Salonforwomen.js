@@ -338,7 +338,6 @@ import {
 import {
   Colors,
   DebugInstructions,
-
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
@@ -354,7 +353,7 @@ const Salonforwomen = (props) => {
   const { navigation } = props;
 const route=useRoute();
   const [salonforwomen, setcategories] = useState([]);
-  // console.log('1111', salonforwomen)
+ 
 
   useEffect(() => {
 
@@ -364,13 +363,11 @@ const route=useRoute();
     };
 
     fetch(
-      //  "https://api.sampleapis.com/coffee/hot"
+     
       `http://13.126.187.109:5500/user/getsubcategories/${props.route.params.id}`
-      // "http://13.126.187.109:5500/admin/salonForWomenList"
-      // "http://13.232.69.59:5500/admin//salonFormenList"
-      // "http://15.206.166.219:5500/user/getCategories"
+      
       , requestOptions).then((result) => {
-        // console.log(allsalonForWomenList)
+       
         result.json().then((resp) => {
         
           setcategories(resp)
@@ -429,31 +426,27 @@ const route=useRoute();
       .catch(error => console.log('error', error));
   }
 
-  return (<>
-    <ScrollView>
-      <View style={{ marginHorizontal: 20 }}>
+  return (
+  <>
+    
+      
       <Header navigation={navigation} title={route.params.head} />
-      {/* <Header navigation={navigation} title="Salom for ewiomwn"/> */}
-        <View style={{ marginTop: 15 }}>
-        
-          <FlatList
-            style={{}}
-            // data={salonforwomen}
+      <FlatList
+            // style={{flex:1}}
+         
             data={salonforwomen.result}
-            //  horizontal={true}
+        
             numColumns={2}
             renderItem={({ item }) => {
               return (
-                //  />
-                // <View style={{ alignContent: 'center', alignItems: 'center', width: 160, height: 235, marginBottom: 5 }}>
-                 
-                  <View style={{ borderRadius: 8, backgroundColor: '#FFFFFF', width: 150, height: 250 }}>
+            <ScrollView style={{height:"100%"}}>
+                  <View style={{ borderRadius: 8, backgroundColor: '#FFFFFF', width: 160, height: 250,margin:10 }}>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate("Facialforglow",{
+                    onPress={() =>[navigation.navigate("Facialforglow",{
                     
-                      head:item.name,id:item._id
+                      head:item.name,id:item._id,userId:salonforwomen.result
                      
-                    })}
+                    }), console.log('sub category', item.name)]}
                    
                      >
                     <Image
@@ -471,14 +464,17 @@ const route=useRoute();
                     {/* <Text style={{ fontSize: 14, textAlign: 'center', color: '#5E17EB', fontWeight: '400' }}>₹ {route.params.name} onwards</Text> */}
 
                   </View>
-                // </View>
+                {/* </View> */}
+                 </ScrollView>
               )
-
+             
             }}
+
           />
-        </View>
-      </View>
-    </ScrollView>
+          
+       
+      
+  
   </>
   )
 }

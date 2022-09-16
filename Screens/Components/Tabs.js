@@ -80,7 +80,7 @@ const TabNavigator = () => {
         headerShown:false,
         tabBarShowLabel:false,
     }}>
-        <Tab.Screen name='Home' component={Home} options={{
+        <Tab.Screen name='Overview' component={Home} options={{
             tabBarIcon: ({color,size}) =>(
                 <AntDesign name="home" color={color} size={size} />
 

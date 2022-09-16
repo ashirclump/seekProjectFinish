@@ -18,9 +18,9 @@ import {Component} from 'react';
 import {useRoute} from '@react-navigation/native';
 // import Pb from './Components/Pb';
 
-const Diamond = (props) => {
+const Diamond = (props,id) => {
   const {visible, closeCallback,navigation} =props;
-  const [Popup, setPopup] = useState(false,"key");
+  const [Popup, setPopup] = useState(false,id);
   const route = useRoute ();
   // const { all,namm,price,image,sp } = route.params;
   const [Press,setPress]=useState();
@@ -90,6 +90,7 @@ const Diamond = (props) => {
                     marginLeft:0
                   }}>
                   {props.name}
+                 
                   {/* {route.params.head} */}
                    {/* {JSON.stringify(price)} */}
                 </Text>
@@ -112,12 +113,12 @@ const Diamond = (props) => {
                   
                   <Text  style={{
                      
-                    fontSize: 17,
+                    fontSize: 14,
                     color: Press?'green':'#5E17EB',
                     fontWeight: '500',
                     left: 0,
                     top: 6,
-                  }}>{Press? ' ☑ Added' :'+ ADD'}</Text>
+                  }}>{Press? '✔Added' :'+ ADD'}</Text>
                   
                 </TouchableOpacity> 
                
@@ -146,6 +147,7 @@ const Diamond = (props) => {
                     marginHorizontal:20
                   }}>
                      ₹ {props.price} 
+                     {/* {props.id} */}
                 </Text>
                 <Text
                 style={{
@@ -156,7 +158,7 @@ const Diamond = (props) => {
                   left:70,
                   textDecorationLine: 'line-through',
                 }}>
-                            ₹1299{props.datat}
+                            ₹1299
 
                 {/* {route.params.namm} */}
               </Text>

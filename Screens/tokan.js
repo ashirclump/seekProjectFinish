@@ -1,0 +1,6 @@
+let tokan = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0Tm8iOiIxMjM0NTY3ODk5IiwidXNlcklkIjoiNjMyNDdlOWVjMDk1YTkwYjNjMzRiNDE0IiwiaWF0IjoxNjYzMzM2Mzg2LCJleHAiOjE2NjMzNDM1ODZ9.--M9mUENfqD2-IqK4t1NQhNiWp_trAVYmwCNVklhoHc';
+
+export default tokan;
+
+
+

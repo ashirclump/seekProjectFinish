@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  TextInput,
   FlatList,
   SafeAreaView,
 } from 'react-native';
@@ -16,6 +17,8 @@ import Plus from 'react-native-vector-icons/AntDesign';
 import News from 'react-native-vector-icons/FontAwesome';
 import DatePicker from 'react-native-date-picker'
 import { TimePickerOptions } from '@react-native-community/datetimepicker';
+import tokan from '../Screens/tokan'
+// import 'moment-timezone';
 // import SummaryFinal from './SummaryFinal';
 // import { DateTimePicker } from 'react-native-modal-datetime-picker';
 // import { TimePicker } from 'react-native-date-picker';
@@ -26,6 +29,37 @@ import { TimePickerOptions } from '@react-native-community/datetimepicker';
 
 //     },
 // ];
+
+// const postUser = () => {
+//   const requestOptions = {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Accept: 'application/json',
+//       Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0Tm8iOiI3ODk4ODU4NjAxIiwidXNlcklkIjoiNjMxNmVjOGNlM2I4ZjY3ODFjZTkyMmMwIiwiaWF0IjoxNjYzMjIxNTA2LCJleHAiOjE2NjMyMjg3MDZ9.FkcCqRwZ2X1NBRGcaGz09nKHlMprjjQkBSJI9a9pctM',
+//     },
+//     body: JSON.stringify({
+//       selectedSlot:'2022-09-15T08:08:35.462+00:00',
+//       addressId:'631c39f93ca71f804f00f82d'
+//     }),
+//   };
+
+//   fetch(
+//     // 'https://gorest.co.in/public/v1/users'
+//     'http://13.126.187.109:5500/user/order',
+//     requestOptions,
+//   )
+//     .then(result => result.json())
+//     .then(resp => {
+//       console.log('Fetch API Response', resp);
+//       //   if (resp) {
+//       //     props.navigation.navigate("Sumary")}
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+// };
+
 
 const SelectTime = (props) => {
   const {
@@ -39,7 +73,40 @@ const SelectTime = (props) => {
     'Free cancellation till 2hr before the booked\nslot,post that ₹50 chargeable';
   const booking = 'Booking Delayed\nby 20 mins';
   const [open, setOpen] = useState(false)
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState (new Date());
+  const [courseName, setCourseName] = useState ("")
+const onChangName = (value) => {
+  setCourseName(value)
+}
+
+  const User = (courseName) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: tokan,
+           },
+      body: JSON.stringify({
+        "address":courseName
+      }),
+    };
+
+    fetch(
+      // 'https://gorest.co.in/public/v1/users'
+      "http://13.126.187.109:5500/user/address",
+      requestOptions,
+    )
+      .then(cartDetails => cartDetails.json())
+      .then(resp => {
+        console.log('address',resp);
+      //   if (resp) {
+      //     props.navigation.navigate("SummaryFinal")}
+      // })
+      // .catch(error => {
+      //   console.error(error);
+      });
+  };
   
   return (
     <SafeAreaView style={{margin:2}}>
@@ -78,18 +145,24 @@ const SelectTime = (props) => {
                   }}>
                   Select date and time{props.name}
                 </Text>
+               
                 <Text style={{color: 'rgba(117, 117, 117, 1)', lineHeight: 21}}>
-                  Your service will take approx.45 mins
+                  Your service will take approx.45 mins  {courseName}
                 </Text>
-
+                <TextInput 
+                value = {courseName}
+                    style={{backgroundColor:'white',borderWidth:2,borderColor:'red'}}
+                    onChangeText= {onChangName}
+                    placeholder=" Enter Your address"
+                    ></TextInput>
 
                 <View style={{marginTop: 50}}>
                 {/* <View> */}
               <Text
                 style={{fontSize: 24, fontWeight: 'bold', marginBottom: 20, textAlign: 'center'}}>
-                {selectedDate
-                  ? selectedDate.toLocaleDateString()
-                  : 'No date selected'}
+                {selectedDate? 
+                selectedDate.toLocaleDateString('MMMM Do YYYY, h:mm:ss a'): 'No date selected'}
+                
                 {/* {selectedDate ? selectedDate.toLocaleTimeString() : 'No date selected'} */}
               </Text>
               <TouchableOpacity onPress={() => setOpen(true)}  style={{
@@ -103,21 +176,27 @@ const SelectTime = (props) => {
                   style={{
                     // justifyContent: 'center',
                     // backgroundColor: 'red',
-                  
+                  fontSize:20,
                     color: 'black',
                   fontWeight: '700',
                   textAlign: 'center',
                   }}>
-                  select Date
+                  select Date & Time
                 </Text>
               </TouchableOpacity>
               <DatePicker
                 modal
+                // mode="date"
                 open={open}
+                
                 date={selectedDate}
+                is24Hour={false}
+                dateFormat='dd-mm-yyyy'
                 onConfirm={date => {
+                 
                   setOpen(false);
                   setSelectedDate(date);
+                  // console.log('110', selectedDate);
                 }}
                 onCancel={() => {
                   setOpen(false);
@@ -125,7 +204,7 @@ const SelectTime = (props) => {
               />
             {/* </View> */}
           {/* </View> */}
-
+         
                 </View>
 
                 <View
@@ -150,18 +229,18 @@ const SelectTime = (props) => {
               <Text
                 style={{fontSize: 24, fontWeight: 'bold', marginBottom: 20, textAlign: 'center'}}>
                 {selectedDate
-                  ? selectedDate.toLocaleTimeString()
+                  ? selectedDate.toLocaleTimeString('MMMM Do YYYY, h:mm:ss a')
                   : 'No date selected'}
                 {/* {selectedDate ? selectedDate.toLocaleTimeString() : 'No date selected'} */}
               </Text>
-              <TouchableOpacity onPress={() => setOpen(true)}  style={{
+              {/* <TouchableOpacity onPress={() => setOpen(true)}  style={{
                 borderRadius: 12,
                 borderColor: 'rgba(94, 23, 235, 1)',
                 borderWidth: 1,
                 padding: 15,
                 backgroundColor: 'rgba(242, 236, 253, 1)',
-              }}>
-                <Text
+              }}> */}
+                {/* <Text
                   style={{
                     // justifyContent: 'center',
                     // backgroundColor: 'red',
@@ -172,8 +251,8 @@ const SelectTime = (props) => {
                   }}>
                   select Date
                 </Text>
-              </TouchableOpacity>
-              <DatePicker
+              </TouchableOpacity> */}
+              {/* <DatePicker
                 modal
                 open={open}
                 date={selectedDate}
@@ -184,20 +263,33 @@ const SelectTime = (props) => {
                 onCancel={() => {
                   setOpen(false);
                 }}
-              />
+              /> */}
             </View>
           </View>
 
 
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('SummaryFinal', {
-                    // id:item.result,
-                  // image: item.image,
-                  named: route.params.name,
-                  // price: item.price,
-                  // des:item.description
-                }
-                  )}>
+                  onPress={() => [User(courseName),navigation.navigate('SummaryFinal', {
+                    
+                  time:selectedDate.toLocaleTimeString(),
+                  date:selectedDate.toLocaleDateString()
+                  
+                  
+                  }
+                  ),
+                  console.log(selectedDate.toLocaleDateString([], {
+                    hour: '-digit',
+                    minute: '2-digit',
+                     hour12: true 
+                  })) ,
+                            console.log(selectedDate.toLocaleTimeString('MMMM Do YYYY, h:mm:ss a')) 
+                  ]}>
+
+
+
+                    
+
+                    
                   <View
                     style={{
                       borderRadius: 10,
