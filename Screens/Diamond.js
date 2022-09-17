@@ -74,8 +74,8 @@ const Diamond = (props,id) => {
                     alignContent:'center'
                   }}
                   // source={require('../assets/fgone.png')}
-                  source={{uri:props.image}}
-                  // source={route.params.images}
+                  // source={{uri:props.image}}
+                  source={route.params.images}
                   // source= {JSON.stringify(image)}
                   ></Image>
               </View>

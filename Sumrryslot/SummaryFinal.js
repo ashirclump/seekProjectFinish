@@ -124,6 +124,12 @@ const SummaryFinal = (props) => {
         // .catch(error => {
         //   console.error(error);
         });
+
+        
+
+        
+
+        
     });
   }, []);
 
@@ -162,6 +168,34 @@ const SummaryFinal = (props) => {
       //   console.error(error);
       });
   };
+
+
+  const not = () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: tokan,
+           },
+      body: JSON.stringify({
+       "addressId":"6325d22db5d5eef468117587",
+    "selectedSlot":"2022-09-19T08:08:35.462+00:00"
+      }),
+    };
+
+    fetch(
+      // 'https://gorest.co.in/public/v1/users'
+      "http://13.126.187.109:5500/user/order",
+      requestOptions,
+    )
+      .then(data => data.json())
+      .then(resp => {
+        console.log('not', resp);
+      
+      });
+  };
+
   return (
     <>
       <View style={{marginHorizontal: 10, backgroundColor: 'white'}}>
@@ -360,7 +394,7 @@ const SummaryFinal = (props) => {
             <View style={{flexDirection: 'row', marginTop: 10}}>
               
               <TouchableOpacity onPress={() => [navigation.navigate('AddMoney')
-              ,onDisplayNotification(salonforwomen)]}                   
+              ,onDisplayNotification(salonforwomen),not()]}                   
               style={{
                     borderRadius: 10,
                     padding: 15,

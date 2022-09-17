@@ -146,8 +146,8 @@ const Home = ({navigation}) => {
 
 
   return (
-   
-      <ScrollView style={{marginHorizontal: 20, bottom: 22}}>
+   <SafeAreaView>
+      <ScrollView style={{marginHorizontal: 10, bottom: 22}}>
         {/* <View style={{marginHorizontal: 20, bottom: 22}}> */}
           <View
             style={{
@@ -320,7 +320,7 @@ const Home = ({navigation}) => {
               </Text>
             </TouchableOpacity>
             {/* <Image  style={{ width: '74%', height: '69%', borderRadius: 20, left: 14, top: 10}} source={{ uri: 'https://seekme-app.s3.ap-south-1.amazonaws.com/main-container/237c6ce0-7208-4ca1-a772-8225454acb0csolun.jpg' }}/> */}
-
+            <SafeAreaView>
             <FlatList
               style={{height: 300}}
               numColumns={3}
@@ -348,7 +348,7 @@ const Home = ({navigation}) => {
                         borderRadius: 20,
                         width: 101,
                         height: 140,
-                        margin: 10,
+                        margin: 8,
                         marginRight: 0,
                         marginBottom: 0,
                       }}>
@@ -379,6 +379,7 @@ const Home = ({navigation}) => {
                 </TouchableOpacity>
               )}
             />
+            </SafeAreaView>
           </View>
 
           <View style={{top: 15}}>
@@ -391,6 +392,7 @@ const Home = ({navigation}) => {
 
         {/* </View> */}
       </ScrollView>
+      </SafeAreaView>
   );
 };
 

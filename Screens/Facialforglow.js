@@ -185,10 +185,9 @@ import Plus from 'react-native-vector-icons/Entypo';
 import Check from 'react-native-vector-icons/AntDesign';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../Screens/Components/Header';
-import Facialglow from '../Screens/Components/Facialglow';
+
 import Diamond from './Diamond';
-import {TabRouter} from '@react-navigation/native';
-import {useRoute} from '@react-navigation/native';
+
 // import Pbutton from '../Screens/Components/Pbutton';
 import Pb from './Components/Pb';
 import Modal from 'react-native-modal';
@@ -330,7 +329,7 @@ const Hello = props => {
   const [checked, setChecked] = useState([]);
   const ashir = 0;
   return (
-    <>
+    <ScrollView>
       <View style={{height: 700, backgroundColor: 'white'}}>
         <Header navigation={navigation} title={route.params.head} />
         <View
@@ -518,14 +517,14 @@ const Hello = props => {
             onPress={() => navigation.navigate('Sumary')}
             style={[
               styles.btn,
-              {backgroundColor: Press ? '#D8D8D8' : '#5E17EB', top: 620,alignSelf:'center'},
+              {backgroundColor: Press ? '#D8D8D8' : '#5E17EB', top: 580,alignSelf:'center'},
             ]}
             disabled={!toggleCheckBox}>
             <Text style={{color: '#ffffff'}}>Proceed</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </>
+    </ScrollView>
   );
 };
 
