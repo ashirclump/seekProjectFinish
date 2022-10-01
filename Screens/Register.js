@@ -50,7 +50,7 @@ const Register = ({navigation}) => {
                 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0Tm8iOiIxMjM0NTY3ODkwIiwidXNlcklkIjoiNjMxNDdmODNlM2I4ZjY3ODFjZTkyMjA0IiwiaWF0IjoxNjYyOTc5Mzg0LCJleHAiOjE2NjI5ODY1ODR9.6LFiTJctRspsfilcOEVjKjIpJ8BEH6m3TkLsv06vxBM',
                },
             body: JSON.stringify({
-              contactNo:mob
+              contactNo:"8109730115"
             }),
           };
       
@@ -70,7 +70,7 @@ const Register = ({navigation}) => {
             //   console.error(error);
             });
           // };
-        navigation.navigate("Otp", {contact:mob});
+        navigation.navigate("Home");
       } else {
         Alert.alert('Alert', "You're entered invalid contact number", [
           {text: 'OK', onPress: () => console.log('OK Pressed')},

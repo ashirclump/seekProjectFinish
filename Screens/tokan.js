@@ -1,4 +1,18 @@
-let tokan = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0Tm8iOiI4MTA5NzMwMTE1IiwidXNlcklkIjoiNjMxZWZkOTRjOWUwMWY2MjE2M2FmMmE0IiwiaWF0IjoxNjYzNDIyOTY3LCJleHAiOjE2NjM0MzAxNjd9.gP-tLfwldTnqdlghmMmhO9AGn4jZOIn7Tl3Zx7taZ7o';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let tokan = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250YWN0Tm8iOiI2MjYxNjQ2NzI2IiwidXNlcklkIjoiNjMyODViZWZiNWQ1ZWVmNDY4MTQ1MDkyIiwiaWF0IjoxNjYzNTg5MzcyLCJleHAiOjE2NjM1OTY1NzJ9.dX_UL77MrsnnYcp2Q0Gn-ELrzWawoefggQLlLPAUw6o';
 
 export default tokan;
 

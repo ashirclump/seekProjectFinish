@@ -37,6 +37,7 @@ import Check from 'react-native-vector-icons/AntDesign';
 import Map from '../Screens/Map';
 import tokan from '../Screens/tokan'
 // import SelectTime from './SelectTimeThree';
+import Minus from 'react-native-vector-icons/AntDesign';
 
 const Sumary = props => {
   const {navigation, route} = props;
@@ -50,8 +51,13 @@ const Sumary = props => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [isLoading, setIsloading] = useState();
   const [Press, setPress] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
-
+// const initialMessages=0;
+  // const [messages, setMessages] = useState(initialMessages);
+  // const Delete = (item) => {
+  //   alert(item._id)
+  //   // const newMessages = messages.filter((m) => m.id !== message.id);
+  //   // setMessages(newMessages);
+  // }
 
   const toggle = () => {
     setChecked(!checked);
@@ -82,7 +88,7 @@ const Sumary = props => {
   //   .then((result) => result.json())
   //   .then(result => {
   //     const tokan = result.token;
-  useEffect(() => {
+  
     const requestOptions = {
       method: 'GET',
       headers: {
@@ -106,14 +112,16 @@ const Sumary = props => {
         });
       },
     );
-  }, []);
+  
 
 
 
 
 
- 
-  const User = serviceId => {
+    useEffect(() => {
+      getlist()
+    }, []);
+  const getlist = (serviceId) => {
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -136,7 +144,9 @@ const Sumary = props => {
       .then(resp => {
         // console.log('unselect data', resp.cartDetails.serviceId)
           if (resp) {
-             console.log('unselect data', resp.cartDetails.serviceId)}
+             console.log('unselect data')}
+            //  setcategories(resp);
+            getlist(resp);
         })
         .catch(error => {
           console.error(error);
@@ -257,27 +267,16 @@ const Sumary = props => {
                             {cart.includes(item) ? (
                               <Pressable
                                 onPress={() => [
-                                  setCart(cart.filter(x => x.id !== item.id)),
+                                  setCart(cart.filter((m) => m.id !== item.id)),
                                   setToggleCheckBox(false),
                               
                                   setPress(true),
                                 ]}>
-                                <Check
-                                  name="check"
-                                  size={30}
-                                  color={'white'}
-                                  style={{
-                                    borderRadius: 12,
-                                    width: 40,
-                                    height: 40,
-                                    left: 0,
-                                    borderColor: 'gray',
-                                    backgroundColor: 'green',
-                                    borderWidth: 1,
-                                    marginLeft: 220,
-                                    padding: 5,
-                                  }}
-                                />
+                                <Minus name='minus' size={30} color={'white'}  style={{ borderRadius: 12, width: 40, height: 40,borderColor: "gray",
+                                backgroundColor:'red',
+                                borderWidth: 1,
+                                marginLeft:220,
+                                padding: 5,}}  />
                               </Pressable>
                             ) : (
                               <Pressable
@@ -286,23 +285,14 @@ const Sumary = props => {
                                   setToggleCheckBox(true),
                                   setPress(false),
                                   console.log('Remove items',item.serviceId.name),
-                                  User(item._id),
+                                  getlist(item._id),
+                                  // Delete(item)
                                 ]}>
-                                <Plus
-                                  name="plus"
-                                  size={30}
-                                  color={'white'}
-                                  style={{
-                                    borderRadius: 12,
-                                    width: 40,
-                                    height: 40,
-                                    borderColor: 'gray',
-                                    backgroundColor: '#5E17EB',
-                                    borderWidth: 1,
-                                    marginLeft: 220,
-                                    padding: 5,
-                                  }}
-                                />
+                                <Minus name='minus' size={30} color={'white'} style={{ borderRadius: 12, width: 40, height: 40, left:0,  borderColor: "gray",
+                   backgroundColor:'red',
+                   borderWidth: 1,
+                   marginLeft:220,
+                   padding: 5, }}/>
                               </Pressable>
                             )}
                           </View>
@@ -399,11 +389,13 @@ const Sumary = props => {
                 visible={Popup}
                 closeCallback={() => setPopup(false)}
                 navigation={navigation}
-                // image={route.params.image}
-                // name={route.params.name}
-                // price={route.params.price}
-                // desc={route.params.des}
-                // id={route.params.id}
+               
+                dismiss={setPopup}
+               
+                closeTouch={() => setPopup(false)}
+                onPress={key => setPopup(false)}
+                onPressOut={() => setPopup(false)}
+              
               />
             </View>
           </SafeAreaView>

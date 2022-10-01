@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 
 import React, {useState} from 'react';
 import {
@@ -31,9 +24,9 @@ import Location from 'react-native-vector-icons/Ionicons';
 import Cash from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import LinearGradient from 'react-native-linear-gradient';
-import CardRelated from '../Screens/Components/CardRelated';
+// import CardRelated from '../Screens/Components/CardRelated';
 import Header from '../Screens/Components/Header';
-import Head from '../Screens/Components/Head';
+// import Head from '../Screens/Components/Head';
 import Summarylist from '../Screens/Components/Summarylist';
 import Card from 'react-native-vector-icons/AntDesign';
 import Wallet from 'react-native-vector-icons/AntDesign';
@@ -55,7 +48,7 @@ const AddMoney = ({navigation}) => {
   return (
     <>
       <View>
-        <Head title="Payment Options" />
+        <Header title="Payment Options" navigation={navigation}/>
         <View style={{flexDirection: 'row', left: 20, marginTop: 40}}>
           <RadioButton
             color="blue"

@@ -90,7 +90,7 @@ const Summarylist = (props) => {
            <View style={{flexDirection:'row',borderRadius:20,top:20,justifyContent:'center',backgroundColor:'#5E17EB',padding:5}}>
              <Plus name='plus' size={20} color={'white'}  style={{textAlign:'center'}} />
 
-               <Text style={{textAlign:'center',color:'white',fontSize:16}}>Add {num}</Text>
+               <Text style={{textAlign:'center',color:'white',fontSize:16}}>Add</Text>
            </View>
            </TouchableOpacity>
          </View>

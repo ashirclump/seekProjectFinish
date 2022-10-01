@@ -131,7 +131,7 @@ const onChangName = (value) => {
             }}>
             <View
               style={{
-                height: 650,
+                height: 550,
                 borderTopLeftRadius: 20,
                 borderTopRightRadius: 20,
               }}>
@@ -165,7 +165,7 @@ const onChangName = (value) => {
                 
                 {/* {selectedDate ? selectedDate.toLocaleTimeString() : 'No date selected'} */}
               </Text>
-              <TouchableOpacity onPress={() => setOpen(true)}  style={{
+              <TouchableOpacity onPress={() => setOpen(false)}  style={{
                 borderRadius: 12,
                 borderColor: 'rgba(94, 23, 235, 1)',
                 borderWidth: 1,

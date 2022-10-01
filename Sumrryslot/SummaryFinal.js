@@ -7,6 +7,7 @@ import {
   Image,
   FlatList,
   Pressable,
+  SafeAreaView,
 } from 'react-native';
 
 import {
@@ -20,6 +21,7 @@ import Noti from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Plus from 'react-native-vector-icons/Entypo';
 import Check from 'react-native-vector-icons/AntDesign';
+import Minus from 'react-native-vector-icons/AntDesign';
 import LinearGradient from 'react-native-linear-gradient';
 import CardRelated from '../Screens/Components/CardRelated';
 import Header from '../Screens/Components/Header';
@@ -42,15 +44,12 @@ const SummaryFinal = (props) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [Press, setPress] = useState([]);
   const [address, setAddress] = useState([]);
-  // console.log("cart items")
-  // const address =
-  //   '89,Bhel Nagar,piplani,Ayodhya Bypass,Bhopal\nMadhya Pradesh 462022,India';
-  // const time = 'Sat,Apr 09 - 07:30PM ';
+ 
   async function onDisplayNotification(salonforwomen) {
-    // Request permissions (required for iOS)
+    
     await notifee.requestPermission()
 
-    // Create a channel (required for Android)
+  
     const channelId = await notifee.createChannel({
       id: 'default',
       name: 'Default Channel',
@@ -78,7 +77,8 @@ const SummaryFinal = (props) => {
 
 
 
-  useEffect(() => {
+  
+   
     const requestOptions = {
       method: 'GET',
       headers: {
@@ -93,7 +93,7 @@ const SummaryFinal = (props) => {
       "http://13.126.187.109:5500/user/getcart",
      requestOptions,
      ).then((result) => {
-      console.log('get cart')
+      // console.log('get cart')
       result.json().then((resp) => {
         setcategories(resp);
       });
@@ -116,31 +116,18 @@ const SummaryFinal = (props) => {
         .then(data => data.json())
         .then(resp => {
          
-          console.log('address get', resp.data);
+          // console.log('address get', resp.data[0].address);
           setAddress(resp);
         //   if (resp) {
         //     props.navigation.navigate("SummaryFinal")}
         // })
         // .catch(error => {
         //   console.error(error);
-        });
-
-        
-
-        
-
-        
+        });     
     });
-  }, []);
+ 
 
-
-  
-
-
-
-
-
-  const User = (serviceId) => {
+  const not=() => {
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -149,37 +136,7 @@ const SummaryFinal = (props) => {
         Authorization: tokan,
            },
       body: JSON.stringify({
-        serviceId
-      }),
-    };
-
-    fetch(
-      // 'https://gorest.co.in/public/v1/users'
-      "http://13.126.187.109:5500/user/updatecart",
-      requestOptions,
-    )
-      .then(cartDetails => cartDetails.json())
-      .then(resp => {
-        console.log('unselect final', resp.cartDetails.serviceId);
-      //   if (resp) {
-      //     props.navigation.navigate("SummaryFinal")}
-      // })
-      // .catch(error => {
-      //   console.error(error);
-      });
-  };
-
-
-  const not = () => {
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: tokan,
-           },
-      body: JSON.stringify({
-       "addressId":"6325d22db5d5eef468117587",
+       "addressId":"63285c9ab5d5eef468145357",
     "selectedSlot":"2022-09-19T08:08:35.462+00:00"
       }),
     };
@@ -196,8 +153,41 @@ const SummaryFinal = (props) => {
       });
   };
 
+  useEffect(() => {
+    getlist()
+  }, []);
+  const getlist = serviceId => {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: tokan,
+           },
+      body: JSON.stringify({
+        serviceId,
+      }),
+    };
+
+    fetch(
+      // 'https://gorest.co.in/public/v1/users'
+      "http://13.126.187.109:5500/user/updatecart",
+      requestOptions,
+    )
+      .then(cartDetails => cartDetails.json())
+      .then(resp => {
+        
+        if (resp) {
+          console.log('unselect final')}
+        getlist(resp);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
   return (
-    <>
+    <SafeAreaView style={{}}>
       <View style={{marginHorizontal: 10, backgroundColor: 'white'}}>
         <ScrollView>
           <Header title="SummaryFinal" navigation={navigation}/>
@@ -314,20 +304,21 @@ const SummaryFinal = (props) => {
             {cart.includes(item) ? (
                <Pressable onPress={() => [setCart(cart.filter((x) => x.id !== item.id)),setToggleCheckBox(false),
                 setPress(true)]}>
-               <Check name='check' size={30} color={'white'} style={{ borderRadius: 12, width: 40, height: 40, left:0,  borderColor: "gray",
-                   backgroundColor:'green',
-                   borderWidth: 1,
-                   marginLeft:220,
-                   padding: 5, }}/>
+                <Minus name='minus' size={30} color={'white'}  style={{ borderRadius: 12, width: 40, height: 40,borderColor: "gray",
+                backgroundColor:'red',
+                borderWidth: 1,
+                marginLeft:220,
+                padding: 5,}}  />
              </Pressable>
             ):(
               <Pressable onPress={() => [setCart([...cart,item]),setToggleCheckBox(true),
-              setPress(false),console.log('Remove fianl',item.serviceId.name),,User(item._id)]}>
-             <Plus name='plus' size={30} color={'white'}  style={{ borderRadius: 12, width: 40, height: 40,borderColor: "gray",
-                   backgroundColor:'#5E17EB',
+              setPress(false),console.log('Remove fianl',item.serviceId.name),getlist(item._id),]}>
+             
+                   <Minus name='minus' size={30} color={'white'} style={{ borderRadius: 12, width: 40, height: 40, left:0,  borderColor: "gray",
+                   backgroundColor:'red',
                    borderWidth: 1,
                    marginLeft:220,
-                   padding: 5,}}  />
+                   padding: 5, }}/>
 
             </Pressable>
             )}
@@ -354,8 +345,8 @@ const SummaryFinal = (props) => {
 //             price={props.route.params.price}
             /> */}
            <Summarylist dom={salonforwomen.relatedServies}/>
-
-
+         
+<SafeAreaView>
           <View
             style={{
               marginTop: 260,
@@ -422,9 +413,11 @@ const SummaryFinal = (props) => {
               </Text>
             </View>
           </View>
+          </SafeAreaView>
         </ScrollView>
+        
       </View>
-    </>
+      </SafeAreaView>
   );
 };
 export default SummaryFinal;
